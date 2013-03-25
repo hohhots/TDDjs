@@ -6,8 +6,11 @@
 	<property name="lib" value="lib" />
 	<property name="jasmine" value="jasmine" />
 
-	<target name="init">
+	<target name="clear">
 		<delete dir = "${lib}" failonerror = "false" />
+	</target>
+
+	<target name="init" depends="clear">
 		<mkdir dir = "${lib}" />
 		<exec executable = "git" dir = "${lib}">
             		<arg value = "clone" />
@@ -21,6 +24,12 @@
             		<arg value = "push" />
             		<arg value = "origin" />
             		<arg value = "master" />
+       		</exec>
+	</target>
+
+	<target name="status" depends="clear">
+		<exec executable = "git" dir = ".">
+            		<arg value = "status" />
        		</exec>
 	</target>
 </project>
