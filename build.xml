@@ -7,9 +7,20 @@
 	<property name="jasmine" value="jasmine" />
 
 	<target name="init">
+		<delete dir = "${lib}" failonerror = "false" />
+		<mkdir dir = "${lib}" />
 		<exec executable = "git" dir = "${lib}">
             		<arg value = "clone" />
             		<arg value = "${jasmineGit}" />
-       		 </exec>
+      		</exec>
+	</target>
+
+	<target name="push">
+		<exec executable = "sudo" dir = ".">
+            		<arg value = "git" />
+            		<arg value = "push" />
+            		<arg value = "origin" />
+            		<arg value = "master" />
+       		</exec>
 	</target>
 </project>
