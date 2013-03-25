@@ -1,0 +1,15 @@
+<project>
+	<property name="git" value="/opt/GitRepository/" />
+	<property name="libsGit" value="${git}libs/" />
+	<property name="jasmineGit" value="${libsGit}/jasmine" />
+
+	<property name="lib" value="lib" />
+	<property name="jasmine" value="jasmine" />
+
+	<target name="init">
+		<exec executable = "git" dir = "${lib}">
+            		<arg value = "clone" />
+            		<arg value = "${jasmineGit}" />
+       		 </exec>
+	</target>
+</project>
