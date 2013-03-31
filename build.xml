@@ -2,18 +2,42 @@
 
 	<property name="toolsDir" value="tools" />
 	<property name="jasmine" value="jasmine" />
+	<property name="jasmineAdapter" value="jasmineAdapter" />
+	<property name="JSTD" value="jsTestDriver" />
 	
 	<property name="projectDir" value="${user.home}/MyProjects/MyTDDjs" />
 
 	<property name="gitDir" value="/opt/GitRepository" />
 	<property name="toolsGitDir" value="${gitDir}/${toolsDir}/" />
 	<property name="jasmineGitDir" value="${toolsGitDir}/${jasmine}" />
+	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
+	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
 
 	<target name="init" depends="antInit,clear">
 		<mkdir dir = "${toolsDir}" />
 		<exec executable = "git" dir = "${toolsDir}">
             		<arg value = "clone" />
             		<arg value = "${jasmineGitDir}" />
+      		</exec>
+		<exec executable = "git" dir = "${toolsDir}/${jasmine}">
+            		<arg value = "checkout" />
+            		<arg value = "18e1b12" />
+      		</exec>
+		<exec executable = "git" dir = "${toolsDir}">
+            		<arg value = "clone" />
+            		<arg value = "${jasmineAdapterGitDir}" />
+      		</exec>
+		<exec executable = "git" dir = "${toolsDir}/${jasmineAdapter}">
+            		<arg value = "checkout" />
+            		<arg value = "10b1049" />
+      		</exec>
+		<exec executable = "git" dir = "${toolsDir}">
+            		<arg value = "clone" />
+            		<arg value = "${JSTDGitDir}" />
+      		</exec>
+		<exec executable = "git" dir = "${toolsDir}/${JSTD}">
+            		<arg value = "checkout" />
+            		<arg value = "cb3794e" />
       		</exec>
 	</target>
 
@@ -117,6 +141,18 @@
             		<arg value = "alias.hist" />
             		<arg value = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short" />
 		</exec>
+  		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "alias.type" />
+            		<arg value = "cat-file -t" />
+      		</exec>
+  		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "alias.dump" />
+            		<arg value = "cat-file -p" />
+      		</exec>
 	
 	</target>
           
