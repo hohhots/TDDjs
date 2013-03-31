@@ -1,18 +1,24 @@
-<project>
-	<property name="git" value="/opt/GitRepository/" />
-	<property name="libsGit" value="${git}libs/" />
-	<property name="jasmineGit" value="${libsGit}/jasmine" />
+<project name="MyTDDjs">
+	<property name="homeDir" value="/home/brgd" />
+	<property name="projectDir" value="${homeDir}/MyProjects/MyTDDjs" />
+	
+	<property name="gitDir" value="/opt/GitRepository" />
+	<property name="toolsGitDir" value="${git}/${tools}/" />
+	<property name="jasmineGitDir" value="${toolsGitDir}/jasmine" />
 
-	<property name="lib" value="lib" />
+	<property name="tools" value="tools" />
+	<property name="gitconfig" value="~/.gitconfig" />
+	
+
 	<property name="jasmine" value="jasmine" />
 
 	<target name="clear">
-		<delete dir = "${lib}" failonerror = "false" />
+		<delete dir = "${tools}" failonerror = "false" />
 	</target>
 
 	<target name="init" depends="clear">
-		<mkdir dir = "${lib}" />
-		<exec executable = "git" dir = "${lib}">
+		<mkdir dir = "${tools}" />
+		<exec executable = "git" dir = "${tools}">
             		<arg value = "clone" />
             		<arg value = "${jasmineGit}" />
       		</exec>
@@ -22,7 +28,6 @@
 		<exec executable = "sudo" dir = ".">
             		<arg value = "git" />
             		<arg value = "push" />
-            		<arg value = "origin" />
             		<arg value = "master" />
        		</exec>
 	</target>
@@ -32,4 +37,91 @@
             		<arg value = "status" />
        		</exec>
 	</target>
+
+	<target name="initant">
+		<delete file = "${gitconfig}"/>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "user.name" />
+            		<arg value = "brgd" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "user.email" />
+            		<arg value = "hohhots@gmail.com" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "push.default" />
+            		<arg value = "matching" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "branch.autosetuprebase" />
+            		<arg value = "always" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "color.ui" />
+            		<arg value = "true" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "color.status" />
+            		<arg value = "auto" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "color.branch" />
+            		<arg value = "auto" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "core.editor" />
+            		<arg value = "vi" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "alias.co" />
+            		<arg value = "checkout" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "alias.ci" />
+            		<arg value = "commit" />
+      		</exec>
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "alias.st" />
+            		<arg value = "status" />
+      		</exec>
+	
+	</target>
+            		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "alias.br" />
+            		<arg value = "branch" />
+      		</exec>
+	
+		<exec executable = "git">
+            		<arg value = "config" />
+            		<arg value = "--global" />
+            		<arg value = "alias.hist" />
+            		<arg value = "log" />
+			<arg value = "--pretty=format:\&quot;%h %ad | %s%d [%an]\&quot;" />            		
+			<arg value = "--graph" />
+            		<arg value = "--date=short" />
+      		</exec>
 </project>
