@@ -1,35 +1,30 @@
 <project name="MyTDDjs">
-	<property name="homeDir" value="/home/brgd" />
-	<property name="projectDir" value="${homeDir}/MyProjects/MyTDDjs" />
-	
-	<property name="gitDir" value="/opt/GitRepository" />
-	<property name="toolsGitDir" value="${git}/${tools}/" />
-	<property name="jasmineGitDir" value="${toolsGitDir}/jasmine" />
 
 	<property name="toolsDir" value="tools" />
-
-	<property name="gitconfig" value="${homeDir}/.gitconfig" />
-	
-
 	<property name="jasmine" value="jasmine" />
+	
+	<property name="projectDir" value="${user.home}/MyProjects/MyTDDjs" />
 
-	<target name="clear">
-		<delete dir = "${toolsDir}" failonerror = "false" />
-	</target>
+	<property name="gitDir" value="/opt/GitRepository" />
+	<property name="toolsGitDir" value="${gitDir}/${toolsDir}/" />
+	<property name="jasmineGitDir" value="${toolsGitDir}/${jasmine}" />
 
-	<target name="init" depends="clear">
+	<target name="init" depends="antInit,clear">
 		<mkdir dir = "${toolsDir}" />
 		<exec executable = "git" dir = "${toolsDir}">
             		<arg value = "clone" />
-            		<arg value = "${jasmineGit}" />
+            		<arg value = "${jasmineGitDir}" />
       		</exec>
+	</target>
+
+	<target name="clear">
+		<delete dir = "${toolsDir}" failonerror = "false" />
 	</target>
 
 	<target name="push">
 		<exec executable = "sudo" dir = ".">
             		<arg value = "git" />
             		<arg value = "push" />
-            		<arg value = "master" />
        		</exec>
 	</target>
 
@@ -40,7 +35,7 @@
 	</target>
 
 	<target name="clearAntInit">
-		<delete file = "${gitconfig}"  />
+		<delete file = "${user.home}/.gitconfig"  />
 	</target>
 
 	<target name="antInit" depends="clearAntInit">
@@ -116,16 +111,13 @@
             		<arg value = "alias.br" />
             		<arg value = "branch" />
       		</exec>
-	
-	</target>
-          
 		<exec executable = "git">
             		<arg value = "config" />
             		<arg value = "--global" />
             		<arg value = "alias.hist" />
-            		<arg value = "log" />
-			<arg value = "--pretty=format:\&quot;%h %ad | %s%d [%an]\&quot;" />            		
-			<arg value = "--graph" />
-            		<arg value = "--date=short" />
-      		</exec>
+            		<arg value = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short" />
+		</exec>
+	
+	</target>
+          
 </project>
