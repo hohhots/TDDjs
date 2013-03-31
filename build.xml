@@ -6,19 +6,20 @@
 	<property name="toolsGitDir" value="${git}/${tools}/" />
 	<property name="jasmineGitDir" value="${toolsGitDir}/jasmine" />
 
-	<property name="tools" value="tools" />
-	<property name="gitconfig" value="~/.gitconfig" />
+	<property name="toolsDir" value="tools" />
+
+	<property name="gitconfig" value="${homeDir}/.gitconfig" />
 	
 
 	<property name="jasmine" value="jasmine" />
 
 	<target name="clear">
-		<delete dir = "${tools}" failonerror = "false" />
+		<delete dir = "${toolsDir}" failonerror = "false" />
 	</target>
 
 	<target name="init" depends="clear">
-		<mkdir dir = "${tools}" />
-		<exec executable = "git" dir = "${tools}">
+		<mkdir dir = "${toolsDir}" />
+		<exec executable = "git" dir = "${toolsDir}">
             		<arg value = "clone" />
             		<arg value = "${jasmineGit}" />
       		</exec>
@@ -38,8 +39,11 @@
        		</exec>
 	</target>
 
-	<target name="initant">
-		<delete file = "${gitconfig}"/>
+	<target name="clearAntInit">
+		<delete file = "${gitconfig}"  />
+	</target>
+
+	<target name="antInit" depends="clearAntInit">
 		<exec executable = "git">
             		<arg value = "config" />
             		<arg value = "--global" />
@@ -106,15 +110,15 @@
             		<arg value = "alias.st" />
             		<arg value = "status" />
       		</exec>
-	
-	</target>
-            		<exec executable = "git">
+  		<exec executable = "git">
             		<arg value = "config" />
             		<arg value = "--global" />
             		<arg value = "alias.br" />
             		<arg value = "branch" />
       		</exec>
 	
+	</target>
+          
 		<exec executable = "git">
             		<arg value = "config" />
             		<arg value = "--global" />
