@@ -18,11 +18,7 @@
 	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
 	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
 
-	<target name="init" depends="antInit,clear,getToolsFromGit,changeMode,setDevEnv" />
-
-	<target name="setDevEnv">
-		
-	</target>
+	<target name="init" depends="antInit,clear,getToolsFromGit,changeMode" />
 
 	<target name="changeMode">
 		<chmod file="${basedir}/*" perm="755" />
