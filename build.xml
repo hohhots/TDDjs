@@ -1,56 +1,67 @@
 <project name="MyTDDjs">
 
-	<property name="toolsDir" value="tools" />
+	<property name="setEnvSh" value="setEnvironment.sh"/>
+	<property name="devEnvShell" location="${basedir}/${setEnvSh}"/>
+	
+	<property name="profileDir" location="/etc/profile.d"/>
+
+	<property name="tools" value="tools" />
 	<property name="jasmine" value="jasmine" />
 	<property name="jasmineAdapter" value="jasmineAdapter" />
 	<property name="JSTD" value="jsTestDriver" />
 	
-	<property name="projectDir" value="${user.home}/MyProjects/MyTDDjs" />
+
 
 	<property name="gitDir" value="/opt/GitRepository" />
-	<property name="toolsGitDir" value="${gitDir}/${toolsDir}/" />
+	<property name="toolsGitDir" value="${gitDir}/${tools}/" />
 	<property name="jasmineGitDir" value="${toolsGitDir}/${jasmine}" />
 	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
 	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
 
-	<target name="init" depends="antInit,clear,getToolsFromGit,chToolsMode" />
+	<target name="init" depends="antInit,clear,getToolsFromGit,changeMode,setDevEnv" />
 
-	<target name="chToolsMode">
+	<target name="setDevEnv">
+		
+	</target>
+
+	<target name="changeMode">
+		<chmod file="${basedir}/*" perm="755" />
+			
 		<chmod perm="755">
-			<fileset dir="${toolsDir}"></fileset>
+			<fileset dir="${tools}"></fileset>
 		</chmod>
 	</target>
 		
 	<target name="getToolsFromGit">
-		<mkdir dir = "${toolsDir}" />
-		<exec executable = "git" dir = "${toolsDir}">
+		<mkdir dir = "${tools}" />
+		<exec executable = "git" dir = "${tools}">
             		<arg value = "clone" />
             		<arg value = "${jasmineGitDir}" />
       		</exec>
-		<exec executable = "git" dir = "${toolsDir}/${jasmine}">
+		<exec executable = "git" dir = "${tools}/${jasmine}">
             		<arg value = "checkout" />
             		<arg value = "18e1b12" />
       		</exec>
-		<exec executable = "git" dir = "${toolsDir}">
+		<exec executable = "git" dir = "${tools}">
             		<arg value = "clone" />
             		<arg value = "${jasmineAdapterGitDir}" />
       		</exec>
-		<exec executable = "git" dir = "${toolsDir}/${jasmineAdapter}">
+		<exec executable = "git" dir = "${tools}/${jasmineAdapter}">
             		<arg value = "checkout" />
             		<arg value = "10b1049" />
       		</exec>
-		<exec executable = "git" dir = "${toolsDir}">
+		<exec executable = "git" dir = "${tools}">
             		<arg value = "clone" />
             		<arg value = "${JSTDGitDir}" />
       		</exec>
-		<exec executable = "git" dir = "${toolsDir}/${JSTD}">
+		<exec executable = "git" dir = "${tools}/${JSTD}">
             		<arg value = "checkout" />
             		<arg value = "cb3794e" />
       		</exec>
 	</target>	
 
 	<target name="clear">
-		<delete dir = "${toolsDir}" failonerror = "false" />
+		<delete dir = "${tools}" failonerror = "false" />
 	</target>
 
 	<target name="push">
