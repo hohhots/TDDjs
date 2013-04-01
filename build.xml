@@ -13,7 +13,15 @@
 	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
 	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
 
-	<target name="init" depends="antInit,clear">
+	<target name="init" depends="antInit,clear,getToolsFromGit,chToolsMode" />
+
+	<target name="chToolsMode">
+		<chmod perm="755">
+			<fileset dir="${toolsDir}"></fileset>
+		</chmod>
+	</target>
+		
+	<target name="getToolsFromGit">
 		<mkdir dir = "${toolsDir}" />
 		<exec executable = "git" dir = "${toolsDir}">
             		<arg value = "clone" />
@@ -39,7 +47,7 @@
             		<arg value = "checkout" />
             		<arg value = "cb3794e" />
       		</exec>
-	</target>
+	</target>	
 
 	<target name="clear">
 		<delete dir = "${toolsDir}" failonerror = "false" />
