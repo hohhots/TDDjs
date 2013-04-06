@@ -28,6 +28,9 @@
 		<chmod perm="755">
 			<fileset dir="${tools}"></fileset>
 		</chmod>
+		<chmod perm="755">
+			<fileset dir="${libs}"></fileset>
+		</chmod>
 	</target>
 
 	<target name="getLibsFromGit">
