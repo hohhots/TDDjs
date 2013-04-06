@@ -10,8 +10,7 @@
 	<property name="jasmine" value="jasmine" />
 	<property name="jasmineAdapter" value="jasmineAdapter" />
 	<property name="JSTD" value="jsTestDriver" />
-	
-
+	<property name="jsStudy" value="jsStudy" />
 
 	<property name="gitDir" value="/opt/GitRepository" />
 	<property name="toolsGitDir" value="${gitDir}/${tools}/" />
