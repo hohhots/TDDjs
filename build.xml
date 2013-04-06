@@ -6,6 +6,7 @@
 	<property name="profileDir" location="/etc/profile.d"/>
 
 	<property name="tools" value="tools" />
+	<property name="libs" value="libs" />
 	<property name="jasmine" value="jasmine" />
 	<property name="jasmineAdapter" value="jasmineAdapter" />
 	<property name="JSTD" value="jsTestDriver" />
@@ -14,11 +15,13 @@
 
 	<property name="gitDir" value="/opt/GitRepository" />
 	<property name="toolsGitDir" value="${gitDir}/${tools}/" />
+	<property name="libsGitDir" value="${gitDir}/${libs}/" />
 	<property name="jasmineGitDir" value="${toolsGitDir}/${jasmine}" />
 	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
 	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
+	<property name="jsStudyGitDir" value="${libsGitDir}/${jsStudy}" />
 
-	<target name="init" depends="antInit,clear,getToolsFromGit,changeMode" />
+	<target name="init" depends="antInit,clear,getToolsFromGit,getLibsFromGit,changeMode" />
 
 	<target name="changeMode">
 		<chmod file="${basedir}/*" perm="755" />
@@ -27,9 +30,23 @@
 			<fileset dir="${tools}"></fileset>
 		</chmod>
 	</target>
+
+	<target name="getLibsFromGit">
+		<mkdir dir = "${libs}" />
+
+		<exec executable = "git" dir = "${libs}">
+            		<arg value = "clone" />
+            		<arg value = "${jsStudyGitDir}" />
+      		</exec>
+		<exec executable = "git" dir = "${libs}/${jsStudy}">
+            		<arg value = "checkout" />
+            		<arg value = "master" />
+      		</exec>
+	</target>	
 		
 	<target name="getToolsFromGit">
 		<mkdir dir = "${tools}" />
+
 		<exec executable = "git" dir = "${tools}">
             		<arg value = "clone" />
             		<arg value = "${jasmineGitDir}" />
@@ -58,6 +75,7 @@
 
 	<target name="clear">
 		<delete dir = "${tools}" failonerror = "false" />
+		<delete dir = "${libs}" failonerror = "false" />
 	</target>
 
 	<target name="push">
