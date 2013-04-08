@@ -81,13 +81,20 @@
 	</target>
 
 	<target name="push">
+		<exec executable = "sudo" dir = "${libs}/${jsStudy}">
+            		<arg value = "git" />
+            		<arg value = "push" />
+       		</exec>
 		<exec executable = "sudo" dir = ".">
             		<arg value = "git" />
             		<arg value = "push" />
        		</exec>
 	</target>
 
-	<target name="status" depends="clear">
+	<target name="status" >
+		<exec executable = "git" dir = "${libs}/${jsStudy}">
+            		<arg value = "status" />
+       		</exec>
 		<exec executable = "git" dir = ".">
             		<arg value = "status" />
        		</exec>
