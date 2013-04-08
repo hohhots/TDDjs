@@ -22,6 +22,26 @@
 
 	<target name="init" depends="antInit,clear,getToolsFromGit,getLibsFromGit,changeMode" />
 
+	<target name="status" >
+		<exec executable = "git" dir = "${libs}/${jsStudy}">
+            		<arg value = "status" />
+       		</exec>
+		<exec executable = "git" dir = ".">
+            		<arg value = "status" />
+       		</exec>
+	</target>
+
+	<target name="push">
+		<exec executable = "sudo" dir = "${libs}/${jsStudy}">
+            		<arg value = "git" />
+            		<arg value = "push" />
+       		</exec>
+		<exec executable = "sudo" dir = ".">
+            		<arg value = "git" />
+            		<arg value = "push" />
+       		</exec>
+	</target>
+
 	<target name="changeMode">
 		<chmod file="${basedir}/*" perm="755" />
 			
@@ -78,26 +98,6 @@
 	<target name="clear">
 		<delete dir = "${tools}" failonerror = "false" />
 		<delete dir = "${libs}" failonerror = "false" />
-	</target>
-
-	<target name="push">
-		<exec executable = "sudo" dir = "${libs}/${jsStudy}">
-            		<arg value = "git" />
-            		<arg value = "push" />
-       		</exec>
-		<exec executable = "sudo" dir = ".">
-            		<arg value = "git" />
-            		<arg value = "push" />
-       		</exec>
-	</target>
-
-	<target name="status" >
-		<exec executable = "git" dir = "${libs}/${jsStudy}">
-            		<arg value = "status" />
-       		</exec>
-		<exec executable = "git" dir = ".">
-            		<arg value = "status" />
-       		</exec>
 	</target>
 
 	<target name="clearAntInit">
