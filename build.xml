@@ -23,22 +23,24 @@
 	<target name="init" depends="antInit,clear,getToolsFromGit,getLibsFromGit,changeMode" />
 
 	<target name="status" >
-		<exec executable = "git" dir = "${libs}/${jsStudy}">
-            		<arg value = "status" />
+		<exec executable = "bash" dir = "${libs}/${jsStudy}">
+            		<arg value = "-c" />
+			<arg value = "git status | grep [:/]" />
        		</exec>
-		<exec executable = "git" dir = ".">
-            		<arg value = "status" />
+		<exec executable = "bash" dir = ".">
+            		<arg value = "-c" />
+			<arg value = "git status | grep [:/]" />
        		</exec>
 	</target>
 
 	<target name="push">
-		<exec executable = "sudo" dir = "${libs}/${jsStudy}">
-            		<arg value = "git" />
-            		<arg value = "push" />
+		<exec executable = "bash" dir = "${libs}/${jsStudy}">
+            		<arg value = "-c" />
+			<arg value = "git push" />
        		</exec>
-		<exec executable = "sudo" dir = ".">
-            		<arg value = "git" />
-            		<arg value = "push" />
+		<exec executable = "bash" dir = ".">
+            		<arg value = "-c" />
+			<arg value = "git push" />
        		</exec>
 	</target>
 
@@ -56,42 +58,42 @@
 	<target name="getLibsFromGit">
 		<mkdir dir = "${libs}" />
 
-		<exec executable = "git" dir = "${libs}">
-            		<arg value = "clone" />
-            		<arg value = "${jsStudyGitDir}" />
+		<exec executable = "bash" dir = "${libs}">
+            		<arg value = "-c" />
+            		<arg value = "git clone ${jsStudyGitDir}" />
       		</exec>
-		<exec executable = "git" dir = "${libs}/${jsStudy}">
-            		<arg value = "checkout" />
-            		<arg value = "master" />
+		<exec executable = "bash" dir = "${libs}/${jsStudy}">
+            		<arg value = "-c" />
+            		<arg value = "git checkout master" />
       		</exec>
 	</target>	
 		
 	<target name="getToolsFromGit">
 		<mkdir dir = "${tools}" />
 
-		<exec executable = "git" dir = "${tools}">
-            		<arg value = "clone" />
-            		<arg value = "${jasmineGitDir}" />
+		<exec executable = "bash" dir = "${tools}">
+            		<arg value = "-c" />
+			<arg value = "git clone ${jasmineGitDir}" />
       		</exec>
-		<exec executable = "git" dir = "${tools}/${jasmine}">
-            		<arg value = "checkout" />
-            		<arg value = "18e1b12" />
+		<exec executable = "bash" dir = "${tools}/${jasmine}">
+            		<arg value = "-c" />
+			<arg value = "git checkout 18e1b12" />
       		</exec>
-		<exec executable = "git" dir = "${tools}">
-            		<arg value = "clone" />
-            		<arg value = "${jasmineAdapterGitDir}" />
+		<exec executable = "bash" dir = "${tools}">
+            		<arg value = "-c" />
+            		<arg value = "git clone ${jasmineAdapterGitDir}" />
       		</exec>
-		<exec executable = "git" dir = "${tools}/${jasmineAdapter}">
-            		<arg value = "checkout" />
-            		<arg value = "10b1049" />
+		<exec executable = "bash" dir = "${tools}/${jasmineAdapter}">
+            		<arg value = "-c" />
+            		<arg value = "git checkout 10b1049" />
       		</exec>
-		<exec executable = "git" dir = "${tools}">
-            		<arg value = "clone" />
-            		<arg value = "${JSTDGitDir}" />
+		<exec executable = "bash" dir = "${tools}">
+            		<arg value = "-c" />
+            		<arg value = "git clone ${JSTDGitDir}" />
       		</exec>
-		<exec executable = "git" dir = "${tools}/${JSTD}">
-            		<arg value = "checkout" />
-            		<arg value = "cb3794e" />
+		<exec executable = "bash" dir = "${tools}/${JSTD}">
+            		<arg value = "-c" />
+            		<arg value = "git checkout cb3794e" />
       		</exec>
 	</target>	
 
@@ -105,97 +107,66 @@
 	</target>
 
 	<target name="antInit" depends="clearAntInit">
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "user.name" />
-            		<arg value = "brgd" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global user.name brgd" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "user.email" />
-            		<arg value = "hohhots@gmail.com" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global user.email hohhots@gmail.com" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "push.default" />
-            		<arg value = "matching" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global push.default matching" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "branch.autosetuprebase" />
-            		<arg value = "always" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global branch.autosetuprebase always" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "color.ui" />
-            		<arg value = "true" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global color.ui true" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "color.status" />
-            		<arg value = "auto" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global color.status auto" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "color.branch" />
-            		<arg value = "auto" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global color.branch auto" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "core.editor" />
-            		<arg value = "vi" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global core.editor vi" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "alias.co" />
-            		<arg value = "checkout" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global alias.co checkout" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "alias.ci" />
-            		<arg value = "commit" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global alias.ci commit" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "alias.st" />
-            		<arg value = "status" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global alias.st status" />
       		</exec>
-  		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "alias.br" />
-            		<arg value = "branch" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global alias.br branch" />
       		</exec>
-		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "alias.hist" />
-            		<arg value = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global alias.hist log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short" />
 		</exec>
-  		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "alias.type" />
-            		<arg value = "cat-file -t" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global alias.type cat-file -t" />
       		</exec>
-  		<exec executable = "git">
-            		<arg value = "config" />
-            		<arg value = "--global" />
-            		<arg value = "alias.dump" />
-            		<arg value = "cat-file -p" />
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "git config --global alias.dump cat-file -p" />
       		</exec>
 	
 	</target>
-          
 </project>
