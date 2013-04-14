@@ -95,6 +95,15 @@
             		<arg value = "-c" />
             		<arg value = "git checkout cb3794e" />
       		</exec>
+		<exec executable = "bash" dir = "${tools}">
+            		<arg value = "-c" />
+            		<arg value = "git clone ${EmacsPlugGitDir}" />
+      		</exec>
+		<exec executable = "bash" dir = "${tools}/${EmacsPlug}">
+            		<arg value = "-c" />
+            		<arg value = "git checkout " />
+      		</exec>
+
 	</target>	
 
 	<target name="clear">
@@ -157,7 +166,7 @@
       		</exec>
 		<exec executable = "bash">
             		<arg value = "-c" />
-            		<arg value = "git config --global alias.hist log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short" />
+            		<arg value = "git config --global alias.hist 'log --pretty=format:&quot;%h %ad | %s%d [%an]&quot; --graph --date=short'" />
 		</exec>
 		<exec executable = "bash">
             		<arg value = "-c" />
