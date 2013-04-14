@@ -115,7 +115,11 @@
 		<delete dir = "${libs}" failonerror = "false" />
 	</target>
 
-	<target name="emacsInit" >
+	<target name="clearEmacsInit">
+		<delete file = "${user.home}/.emacs"  />
+	</target>
+
+	<target name="emacsInit" depends="clearEmacsInit">
 		<exec executable = "bash">
             		<arg value = "-c" />
             		<arg value = "cat ${tools}/${EmacsPlug}/config.txt >> ${user.home}/.emacs" />
