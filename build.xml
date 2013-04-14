@@ -12,6 +12,8 @@
 	<property name="JSTD" value="jsTestDriver" />
 	<property name="jsStudy" value="jsStudy" />
 
+	<property name="EmacsPlug" value="emacs" />
+
 	<property name="gitDir" value="/opt/GitRepository" />
 	<property name="toolsGitDir" value="${gitDir}/${tools}/" />
 	<property name="libsGitDir" value="${gitDir}/${libs}/" />
@@ -19,6 +21,8 @@
 	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
 	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
 	<property name="jsStudyGitDir" value="${libsGitDir}/${jsStudy}" />
+
+	<property name="EmacsPlugGitDir" value="${toolsGitDir}/${EmacsPlug}" />
 
 	<target name="init" depends="antInit,clear,getToolsFromGit,getLibsFromGit,changeMode" />
 
@@ -101,7 +105,7 @@
       		</exec>
 		<exec executable = "bash" dir = "${tools}/${EmacsPlug}">
             		<arg value = "-c" />
-            		<arg value = "git checkout " />
+            		<arg value = "git checkout dae5ce8" />
       		</exec>
 
 	</target>	
