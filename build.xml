@@ -24,7 +24,7 @@
 
 	<property name="EmacsPlugGitDir" value="${toolsGitDir}/${EmacsPlug}" />
 
-	<target name="init" depends="antInit,clear,getToolsFromGit,getLibsFromGit,changeMode" />
+	<target name="init" depends="gitInit,clear,getToolsFromGit,emacsInit,getLibsFromGit,changeMode" />
 
 	<target name="status" >
 		<exec executable = "bash" dir = "${libs}/${jsStudy}">
@@ -115,11 +115,18 @@
 		<delete dir = "${libs}" failonerror = "false" />
 	</target>
 
-	<target name="clearAntInit">
+	<target name="emacsInit" >
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "cat ${tools}/${EmacsPlug}/config.txt >> ${user.home}/.emacs" />
+      		</exec>
+	</target>
+
+	<target name="clearGitInit">
 		<delete file = "${user.home}/.gitconfig"  />
 	</target>
 
-	<target name="antInit" depends="clearAntInit">
+	<target name="gitInit" depends="clearGitInit">
 		<exec executable = "bash">
             		<arg value = "-c" />
             		<arg value = "git config --global user.name brgd" />
