@@ -124,6 +124,12 @@
             		<arg value = "-c" />
             		<arg value = "cat ${tools}/${EmacsPlug}/config.txt >> ${user.home}/.emacs" />
       		</exec>
+
+		<exec executable = "bash">
+            		<arg value = "-c" />
+            		<arg value = "sed -i 's/mybase/${basedir}/g' ${user.home}/.emacs" />
+      		</exec>
+
 	</target>
 
 	<target name="clearGitInit">
