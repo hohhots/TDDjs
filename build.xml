@@ -105,7 +105,7 @@
       		</exec>
 		<exec executable = "bash" dir = "${tools}/${EmacsPlug}">
             		<arg value = "-c" />
-            		<arg value = "git checkout 4daf1ec" />
+            		<arg value = "git checkout 6cbb4f4" />
       		</exec>
 
 	</target>	
