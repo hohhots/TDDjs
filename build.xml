@@ -60,8 +60,6 @@
 	</target>
 
 	<target name="getLibsFromGit">
-		<mkdir dir = "${libs}" />
-
 		<exec executable = "bash" dir = "${libs}">
             		<arg value = "-c" />
             		<arg value = "git clone ${jsStudyGitDir}" />
