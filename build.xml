@@ -6,7 +6,7 @@
 	<property name="profileDir" location="/etc/profile.d"/>
 
 	<property name="tools" value="tools" />
-	<property name="libs" value="libs" />
+	<property name="lib" value="lib" />
 	<property name="jasmine" value="jasmine" />
 	<property name="jasmineAdapter" value="jasmineAdapter" />
 	<property name="JSTD" value="jsTestDriver" />
@@ -16,18 +16,18 @@
 
 	<property name="gitDir" value="/opt/GitRepository" />
 	<property name="toolsGitDir" value="${gitDir}/${tools}/" />
-	<property name="libsGitDir" value="${gitDir}/${libs}/" />
+	<property name="libGitDir" value="${gitDir}/${lib}/" />
 	<property name="jasmineGitDir" value="${toolsGitDir}/${jasmine}" />
 	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
 	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
-	<property name="jsStudyGitDir" value="${libsGitDir}/${jsStudy}" />
+	<property name="jsStudyGitDir" value="${libGitDir}/${jsStudy}" />
 
 	<property name="EmacsPlugGitDir" value="${toolsGitDir}/${EmacsPlug}" />
 
 	<target name="init" depends="gitInit,clear,getToolsFromGit,emacsInit,getLibsFromGit,changeMode" />
 
 	<target name="status" >
-		<exec executable = "bash" dir = "${libs}/${jsStudy}">
+		<exec executable = "bash" dir = "${lib}/${jsStudy}">
             		<arg value = "-c" />
 			<arg value = "git status | grep [:/]" />
        		</exec>
@@ -38,7 +38,7 @@
 	</target>
 
 	<target name="push">
-		<exec executable = "bash" dir = "${libs}/${jsStudy}">
+		<exec executable = "bash" dir = "${lib}/${jsStudy}">
             		<arg value = "-c" />
 			<arg value = "git push" />
        		</exec>
@@ -55,16 +55,16 @@
 			<fileset dir="${tools}"></fileset>
 		</chmod>
 		<chmod perm="755">
-			<fileset dir="${libs}"></fileset>
+			<fileset dir="${lib}"></fileset>
 		</chmod>
 	</target>
 
 	<target name="getLibsFromGit">
-		<exec executable = "bash" dir = "${libs}">
+		<exec executable = "bash" dir = "${lib}">
             		<arg value = "-c" />
             		<arg value = "git clone ${jsStudyGitDir}" />
       		</exec>
-		<exec executable = "bash" dir = "${libs}/${jsStudy}">
+		<exec executable = "bash" dir = "${lib}/${jsStudy}">
             		<arg value = "-c" />
             		<arg value = "git checkout master" />
       		</exec>
@@ -110,7 +110,6 @@
 
 	<target name="clear">
 		<delete dir = "${tools}" failonerror = "false" />
-		<delete dir = "${libs}" failonerror = "false" />
 	</target>
 
 	<target name="clearEmacsInit">
