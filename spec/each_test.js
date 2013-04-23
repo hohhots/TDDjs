@@ -13,8 +13,8 @@ describe("test tddjs each function",function(){
 
 	var result = [];
 
-	tddjs.each(object,function(prop,value){
-	    result[prop] = value;
+	tddjs.each(object,function(prop,val){
+	    result.push(prop);
 	});
 
 	expect(result.length).toEqual(7);
@@ -31,8 +31,8 @@ describe("test tddjs each function",function(){
 	
 	var result = [];
 
-	tddjs.each(object,function(prop,value){
-	    result[prop] = value;
+	tddjs.each(object,function(prop,val){
+	    result.push(prop);
 	});
 
 	expect(result.length).toEqual(3);
