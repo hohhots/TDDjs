@@ -2,6 +2,6 @@
 
 export JSTESTDRIVER_HOME=$PWD/tools/jsTestDriver
 
-jstestdriver --port 9876 --browser firefox,chromium-browser,/opt/google/chrome/chrome &
+jstestdriver --port 9876 --browser firefox,/opt/google/chrome/chrome &
 
 jsautotest
