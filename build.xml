@@ -8,7 +8,7 @@
 	<property name="tools" value="tools" />
 	<property name="lib" value="lib" />
 	<property name="jasmine" value="jasmine" />
-	<property name="jQuery" value="jQuery" />
+	<property name="jQuery" value="jquery" />
 	<property name="jasmineQuery" value="jasmineQuery" />
 	<property name="jasmineAdapter" value="jasmineAdapter" />
 	<property name="JSTD" value="jsTestDriver" />
