@@ -1,6 +1,7 @@
 describe("Test namespace of tddjs",function(){
     afterEach(function(){
 	delete tddjs.nstest;
+	delete tddjs.dom;
     });
 
     it('Should create none-existent object', function () {
