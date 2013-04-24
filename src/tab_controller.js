@@ -3,14 +3,14 @@
 
   function create(element) {
     if (!element || typeof element.className != "string") {
-      throw new TypeError("element is not an element");
+	throw new TypeError("element is not an element");
     }
 
     dom.addClassName(element, "js-tab-controller");
     var tabs = Object.create(this);
 
     element.onclick = function (event) {
-      tabs.handleTabClick(event || window.event || {});
+	tabs.handleTabClick(event || window.event || {});
     };
 
     element = null;
