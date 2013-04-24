@@ -8,6 +8,7 @@
 	<property name="tools" value="tools" />
 	<property name="lib" value="lib" />
 	<property name="jasmine" value="jasmine" />
+	<property name="jQuery" value="jQuery" />
 	<property name="jasmineQuery" value="jasmineQuery" />
 	<property name="jasmineAdapter" value="jasmineAdapter" />
 	<property name="JSTD" value="jsTestDriver" />
@@ -19,6 +20,7 @@
 	<property name="toolsGitDir" value="${gitDir}/${tools}/" />
 	<property name="libGitDir" value="${gitDir}/${lib}/" />
 	<property name="jasmineGitDir" value="${toolsGitDir}/${jasmine}" />
+	<property name="jQueryGitDir" value="${toolsGitDir}/${jQuery}" />
 	<property name="jasmineQueryGitDir" value="${toolsGitDir}/${jasmineQuery}" />
 	<property name="jasmineAdapterGitDir" value="${toolsGitDir}/${jasmineAdapter}" />
 	<property name="JSTDGitDir" value="${toolsGitDir}/${JSTD}" />
@@ -82,6 +84,14 @@
 		<exec executable = "bash" dir = "${tools}/${jasmine}">
             		<arg value = "-c" />
 			<arg value = "git checkout 18e1b12" />
+      		</exec>
+		<exec executable = "bash" dir = "${tools}">
+            		<arg value = "-c" />
+            		<arg value = "git clone ${jQueryGitDir}" />
+      		</exec>
+		<exec executable = "bash" dir = "${tools}/${jQuery}">
+            		<arg value = "-c" />
+            		<arg value = "git checkout 6436c58" />
       		</exec>
 		<exec executable = "bash" dir = "${tools}">
             		<arg value = "-c" />
