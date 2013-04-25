@@ -19,11 +19,28 @@
   }
 
   function handleTabClick(event) {
-    
+      var target = event.target || event.srcElement;
+
+      while(target && target.nodeType != 1){
+	  target = target.parentNode;
+      }
+
+      this.activateTab(target);
   }
 
   function activateTab(element) {
-  
+      if(!element || !element.tagName ||
+	 element.tagName.toLowerCase() != this.tabTagName){
+	  return;
+      }
+
+      var className = "active-tab";
+      dom.removeClassName(this.prevTab, className);
+      dom.addClassName(element, className);
+      var previous = this.prevTab;
+      this.prevTab = element;
+
+      this.onTabChange(element,previous);
   }
 
   tddjs.namespace("ui").tabController = {
