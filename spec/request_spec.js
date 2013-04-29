@@ -1,6 +1,6 @@
-describe("test get request",function(){
-    var ajax = tddjs.ajax;
+var ajax = tddjs.ajax;
 
+describe("test get request",function(){
     beforeEach(function(){
 	this.ajaxcreate = ajax.create;
 	this.xhr = Object.create(fakeXMLHttpRequest);
@@ -42,5 +42,28 @@ describe("test get request",function(){
 	ajax.get("/url");
 
 	expect(this.xhr.send.called).toBeTruthy();
+    });
+});
+
+describe("test readystate handler",function(){
+    beforeEach(function(){
+	this.ajaxcreate = ajax.create;
+	this.xhr = Object.create(fakeXMLHttpRequest);
+	ajax.create = stubFn(this.xhr);
+    });
+
+    afterEach(function(){
+	ajax.create = this.ajaxcreate;
+    });
+
+    it('Should call success handler for status 200', function () {
+	this.xhr.readyState = 4;
+	this.xhr.status = 200;
+	var success = stubFn();
+
+	ajax.get("/url",{success:success});
+	this.xhr.onreadystatechange();
+
+	expect(success.called).toBeTruthy();
     });
 });
