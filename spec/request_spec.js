@@ -66,4 +66,14 @@ describe("test readystate handler",function(){
 
 	expect(success.called).toBeTruthy();
     });
+
+    it('Should not throw error without success handler', function () {
+	this.xhr.readyState = 4;
+	this.xhr.status = 200;
+
+	ajax.get("/url");
+	expect(function(){
+	    this.xhr.onreadystatechange();
+	}.bind(this)).not.toThrow();
+    });
 });
